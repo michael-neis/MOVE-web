@@ -1,4 +1,4 @@
-
+import styled from 'styled-components';
 
 function Homepage () {
 
@@ -6,10 +6,15 @@ function Homepage () {
 
 
     return(
-        <div className="home-container">
-            <h1 className="title">MOVE</h1>
-        </div>
+        <Header>
+            <h1>MOVE</h1>
+        </Header>
     )
 }
 
 export default Homepage
+
+const Header = styled.div`
+    color: ${props => props.theme.color.headers};
+    text-align: center
+`
