@@ -10,7 +10,6 @@ function LandingPage(){
         history('/signup')
     }
 
-
     return(
         <div>
             <h1 className="landing-title">MOVE</h1>
