@@ -1,20 +1,19 @@
 import { Modal } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
+import { logout } from "../firebase";
 
-function UserModal({showUserModal, handleClose, currentUser, setCurrentUser}){
+function UserModal({showUserModal, handleClose, name}){
 
     let history = useNavigate();
 
     const handleLogout = () => {
         handleClose();
-        setCurrentUser(null)
-        fetch('api/logout', { method: 'DELETE' })
-        history('/')
+        logout()
     }
 
     const handleEditProfile = () => {
         handleClose();
-        history('/my_profile')
+        console.log('should lead to edit page once created')
     }
 
 
@@ -22,7 +21,7 @@ function UserModal({showUserModal, handleClose, currentUser, setCurrentUser}){
     <>
     <Modal show={showUserModal} onHide={handleClose}>
         <Modal.Header >
-            <Modal.Title>{currentUser.username}</Modal.Title>
+            <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         <Modal.Footer>
             <button className='nes-btn is-primary' style={{fontSize: 10, marginRight: 10}} onClick={handleEditProfile}>

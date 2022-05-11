@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
+import Header from "./Header";
 
 function Homepage () {
     const [user, loading, error] = useAuthState(auth);
@@ -31,6 +32,7 @@ function Homepage () {
             {/* <Header>
                 <h1>MOVE</h1>
             </Header> */}
+            <Header user={user} name={name}/>
             <div className="dashboard">
                 <div className="dashboard__container">
                 Logged in as
