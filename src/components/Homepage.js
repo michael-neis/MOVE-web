@@ -28,9 +28,9 @@ function Homepage () {
 
     return (
         <>
-            <Header>
+            {/* <Header>
                 <h1>MOVE</h1>
-            </Header>
+            </Header> */}
             <div className="dashboard">
                 <div className="dashboard__container">
                 Logged in as
@@ -47,7 +47,7 @@ function Homepage () {
 
 export default Homepage
 
-const Header = styled.div`
-    color: ${props => props.theme.color.headers};
-    text-align: center
-`
+// const Header = styled.div`
+//     color: ${props => props.theme.color.headers};
+//     text-align: center
+// `
