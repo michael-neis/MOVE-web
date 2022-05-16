@@ -9,9 +9,14 @@ function Login(){
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        logInWithEmailAndPassword(email, password)
-        navigate('/')
+
+    const handleLogin = async () => {
+        await logInWithEmailAndPassword(email, password)
+        if(user){
+          navigate('/')
+        }else{
+          console.log('Login failed')
+        }
     }
 
     useEffect(() => {

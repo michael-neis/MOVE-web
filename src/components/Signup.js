@@ -6,6 +6,7 @@ import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../firebas
 function Signup(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState("");
     const [name, setName] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const history = useNavigate();
@@ -25,10 +26,21 @@ function Signup(){
         }
     }, [user, loading]);
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+
+      if(password === verifyPassword){
+        register()
+      }else{
+        alert("Password must match")
+      }
+    }
+
 
     return (
       <div className="register">
         <div className="register__container">
+          <form onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
             className="register__textBox"
@@ -50,9 +62,19 @@ function Signup(){
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <button className="register__btn" onClick={register}>
+          <input
+            type="password"
+            className="register__textBox"
+            value={verifyPassword}
+            onChange={(e) => setVerifyPassword(e.target.value)}
+            placeholder="Verify Password"
+          />
+          <button className="register__btn" 
+            type='submit'
+          >
             Register
           </button>
+          </form>
           <button
             className="register__btn register__google"
             onClick={signInWithGoogle}
