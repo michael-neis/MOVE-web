@@ -15,7 +15,8 @@ function Login(){
         if(user){
           navigate('/')
         }else{
-          console.log('Login failed')
+          setEmail('')
+          setPassword('')
         }
     }
 
