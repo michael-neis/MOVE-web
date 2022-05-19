@@ -5,7 +5,10 @@ function Testpage(){
 
     return(
         <div>
-            hello there
+            <h1>Moves list</h1>
+            <ul>
+                <li>moves here</li>
+            </ul>
         </div>
     )
 }
