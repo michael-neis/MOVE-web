@@ -1,7 +1,8 @@
-
+import { useState } from "react"
 
 function Testpage(){
 
+    const [moveTitle, setMoveTitle] = useState()
 
     return(
         <div>
@@ -14,6 +15,13 @@ function Testpage(){
             <ul>
                 <li>users here</li>
             </ul>
+
+            <h1>Create Move</h1>
+            <form>
+                <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
+            </form>
+
+            
         </div>
     )
 }
