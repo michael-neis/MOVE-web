@@ -9,7 +9,9 @@ import Header from "./Header";
 function Homepage () {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
+
     const navigate = useNavigate();
+
     const fetchUserName = async () => {
       try {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -21,6 +23,7 @@ function Homepage () {
         alert("An error occured while fetching user data");
       }
     };
+    
     useEffect(() => {
       if (loading) return;
       if (!user) return navigate("/");
@@ -39,6 +42,7 @@ function Homepage () {
                 <div>{name}</div>
                 <div>{user?.email}</div>
                 </div>
+                <button onClick={() => navigate('/test')}>test page</button>
             </div>
        </>
     );

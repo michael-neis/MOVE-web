@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components'
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Routes, Route } from "react-router-dom";
+import Testpage from "./components/Testpage";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/reset" element={<Reset />} />
+        <Route exact path="/test" element={<Testpage />} />
       </Routes>
     </ThemeProvider>
     </>

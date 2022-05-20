@@ -87,8 +87,6 @@ const logInWithEmailAndPassword = async (email, password) => {
     signOut(auth);
   };
 
-
-
   export {
     auth,
     db,
@@ -96,5 +94,5 @@ const logInWithEmailAndPassword = async (email, password) => {
     logInWithEmailAndPassword,
     registerWithEmailAndPassword,
     sendPasswordReset,
-    logout,
+    logout
   };
