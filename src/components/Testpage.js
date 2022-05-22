@@ -7,8 +7,8 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 function Testpage(){
 
     const [user, loading, error] = useAuthState(auth);
-    const [moveTitle, setMoveTitle] = useState();
-    const [groupTitle, setGroupTitle] = useState();
+    const [moveTitle, setMoveTitle] = useState('');
+    const [groupTitle, setGroupTitle] = useState('');
     const [allUsers, setAllUsers] = useState();
     
     const navigate = useNavigate();
@@ -34,6 +34,11 @@ function Testpage(){
     const createMove = () => {
         console.log(`creating move: ${moveTitle}`)
         setMoveTitle('')
+    }
+
+    const createGroup = () => {
+        console.log(`creating group: ${groupTitle}`)
+        setGroupTitle('')
     }
       
     useEffect(() => {
@@ -63,7 +68,7 @@ function Testpage(){
             </form>
 
             <h1>Create Group</h1>
-            <form>
+            <form onSubmit={() => createGroup()}>
                 <input type="text" value={groupTitle} onChange={(e) => setGroupTitle(e.target.value)}/>
             </form>
 
