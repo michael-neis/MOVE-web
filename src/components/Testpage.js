@@ -8,6 +8,7 @@ function Testpage(){
 
     const [user, loading, error] = useAuthState(auth);
     const [moveTitle, setMoveTitle] = useState();
+    const [groupTitle, setGroupTitle] = useState();
     const [allUsers, setAllUsers] = useState();
     
     const navigate = useNavigate();
@@ -59,6 +60,11 @@ function Testpage(){
             <h1>Create Move</h1>
             <form onSubmit={() => createMove()}>
                 <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
+            </form>
+
+            <h1>Create Group</h1>
+            <form>
+                <input type="text" value={groupTitle} onChange={(e) => setGroupTitle(e.target.value)}/>
             </form>
 
 
