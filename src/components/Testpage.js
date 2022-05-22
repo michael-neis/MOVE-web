@@ -31,7 +31,8 @@ function Testpage(){
     }
 
     const createMove = () => {
-        console.log('creating move')
+        console.log(`creating move: ${moveTitle}`)
+        setMoveTitle('')
     }
       
     useEffect(() => {
@@ -56,7 +57,7 @@ function Testpage(){
             </ul>
 
             <h1>Create Move</h1>
-            <form>
+            <form onSubmit={() => createMove()}>
                 <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
             </form>
 
