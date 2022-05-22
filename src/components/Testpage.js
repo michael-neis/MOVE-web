@@ -24,12 +24,18 @@ function Testpage(){
           alert("An error occured while fetching user data");
         }
       };
+
+
+    const fetchAllMoves = () => {
+        console.log('fetching moves')
+    }
       
-      useEffect(() => {
+    useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
         fetchAllUsers();
-      }, [user, loading]);
+        fetchAllMoves()
+    }, [user, loading]);
 
 
     return(
