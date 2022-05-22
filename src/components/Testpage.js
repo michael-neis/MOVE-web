@@ -29,6 +29,10 @@ function Testpage(){
     const fetchAllMoves = () => {
         console.log('fetching moves')
     }
+
+    const createMove = () => {
+        console.log('creating move')
+    }
       
     useEffect(() => {
         if (loading) return;
