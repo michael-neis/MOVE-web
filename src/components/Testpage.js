@@ -11,6 +11,7 @@ function Testpage(){
     const [groupTitle, setGroupTitle] = useState('');
     const [allUsers, setAllUsers] = useState();
     const [allMoves, setAllMoves] = useState()
+    const [allGroups, setAllGroups] = useState()
     
     const navigate = useNavigate();
     
@@ -50,16 +51,39 @@ function Testpage(){
           }
     }
 
+    const fetchAllGroups = async () => {
+        try {
+            const q = query(collection(db, "groups"));
+            const snap = await getDocs(q);
+            const list = snap.docs.map(doc => doc.data());
+            const elements = list.map((group) => <li key={group.title}>{group.title}</li>)
+            setAllGroups(elements);
+          } catch (err) {
+            console.error(err);
+            alert("An error occured while fetching move data");
+          }
+    }
+
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
         fetchAllUsers();
-        fetchAllMoves()
+        fetchAllMoves();
+        fetchAllGroups()
     }, [user, loading]);
 
-    const createGroup = () => {
-        console.log(`creating group: ${groupTitle}`)
-        setGroupTitle('')
+    const createGroup = async () => {
+        try {
+            const data = {
+                admin: user.uid,
+                title: groupTitle
+                };
+
+            await addDoc(collection(db, "groups"), data);            
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
+        }
     }
 
     const createMove = async () => {
@@ -83,6 +107,12 @@ function Testpage(){
         setMoveTitle('')
     }
 
+    const groupSubmit = (e) => {
+        e.preventDefault()
+        createGroup()
+        setGroupTitle('')
+    }
+
 
     return(
         <div>
@@ -98,13 +128,19 @@ function Testpage(){
                 {allUsers}
             </ul>
 
+            <h1>Groups list</h1>
+            <ul>
+                <li>groups here</li>
+                {allGroups}
+            </ul>
+
             <h1>Create Move</h1>
             <form onSubmit={(e) => moveSubmit(e)}>
                 <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
             </form>
 
             <h1>Create Group</h1>
-            <form onSubmit={() => createGroup()}>
+            <form onSubmit={(e) => groupSubmit(e)}>
                 <input type="text" value={groupTitle} onChange={(e) => setGroupTitle(e.target.value)}/>
             </form>
 
