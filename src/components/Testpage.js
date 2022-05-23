@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, getDocs, where, addDoc } from "firebase/firestore";
 
 function Testpage(){
 
@@ -10,6 +10,7 @@ function Testpage(){
     const [moveTitle, setMoveTitle] = useState('');
     const [groupTitle, setGroupTitle] = useState('');
     const [allUsers, setAllUsers] = useState();
+    const [allMoves, setAllMoves] = useState()
     
     const navigate = useNavigate();
     
@@ -26,21 +27,29 @@ function Testpage(){
         }
       };
 
-
-    const fetchAllMoves = () => {
-        console.log('fetching moves')
+    
+    const moveClick = (move) => {
+        if(move.uid === user.uid){
+            console.log('im the admin')
+        }else{
+            console.log('im not the admin')
+        }
     }
 
-    const createMove = () => {
-        console.log(`creating move: ${moveTitle}`)
-        setMoveTitle('')
+
+    const fetchAllMoves = async () => {
+        try {
+            const q = query(collection(db, "moves"));
+            const snap = await getDocs(q);
+            const list = snap.docs.map(doc => doc.data());
+            const elements = list.map((move) => <li onClick={() => moveClick(move)} key={move.title}>{move.title}</li>)
+            setAllMoves(elements);
+          } catch (err) {
+            console.error(err);
+            alert("An error occured while fetching move data");
+          }
     }
 
-    const createGroup = () => {
-        console.log(`creating group: ${groupTitle}`)
-        setGroupTitle('')
-    }
-      
     useEffect(() => {
         if (loading) return;
         if (!user) return navigate("/");
@@ -48,12 +57,39 @@ function Testpage(){
         fetchAllMoves()
     }, [user, loading]);
 
+    const createGroup = () => {
+        console.log(`creating group: ${groupTitle}`)
+        setGroupTitle('')
+    }
+
+    const createMove = async () => {
+        try {
+            const data = {
+                uid: user.uid,
+                title: moveTitle
+                };
+
+            await addDoc(collection(db, "moves"), data);            
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
+        }
+      };
+
+
+    const moveSubmit = (e) => {
+        e.preventDefault()
+        createMove()
+        setMoveTitle('')
+    }
+
 
     return(
         <div>
             <h1>Moves list</h1>
             <ul>
                 <li>moves here</li>
+                {allMoves}
             </ul>
 
             <h1>Users list</h1>
@@ -63,7 +99,7 @@ function Testpage(){
             </ul>
 
             <h1>Create Move</h1>
-            <form onSubmit={() => createMove()}>
+            <form onSubmit={(e) => moveSubmit(e)}>
                 <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
             </form>
 
