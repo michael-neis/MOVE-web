@@ -29,16 +29,6 @@ function Testpage(){
         }
       };
 
-    
-    const moveClick = (move) => {
-        if(move.uid === user.uid){
-            console.log('im the admin')
-        }else{
-            console.log('im not the admin')
-        }
-    }
-
-
     const fetchAllMoves = async () => {
         try {
             const q = query(collection(db, "moves"));
@@ -107,6 +97,15 @@ function Testpage(){
         createMove()
         setMoveTitle('')
     }
+
+    const moveClick = (move) => {
+        if(move.uid === user.uid){
+            console.log('im the admin')
+        }else{
+            console.log('im not the admin')
+        }
+    }
+
 
     const groupSubmit = (e) => {
         e.preventDefault()
