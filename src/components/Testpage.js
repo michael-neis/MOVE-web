@@ -65,7 +65,8 @@ function Testpage(){
         if (!user) return navigate("/");
         fetchAllUsers();
         fetchAllMoves();
-        fetchAllGroups()
+        fetchAllGroups();
+        fetchAllFriends();
     }, [user, loading]);
 
     const createGroup = async () => {
