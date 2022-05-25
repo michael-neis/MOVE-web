@@ -3,6 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { query, collection, getDocs, where, addDoc } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 function Testpage(){
 
@@ -53,6 +54,10 @@ function Testpage(){
             console.error(err);
             alert("An error occured while fetching move data");
           }
+    }
+
+    const fetchAllFriends = async () => {
+        console.log('fetching friends')
     }
 
     useEffect(() => {
