@@ -134,6 +134,12 @@ function Testpage(){
                 {allGroups}
             </ul>
 
+            <h1>Friends list</h1>
+            <ul>
+                <li>friends here</li>
+                {allGroups}
+            </ul>
+
             <h1>Create Move</h1>
             <form onSubmit={(e) => moveSubmit(e)}>
                 <input type="text" value={moveTitle} onChange={(e) => setMoveTitle(e.target.value)}/>
