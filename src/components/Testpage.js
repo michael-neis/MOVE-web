@@ -12,6 +12,7 @@ function Testpage(){
     const [allUsers, setAllUsers] = useState();
     const [allMoves, setAllMoves] = useState()
     const [allGroups, setAllGroups] = useState()
+    const [allFriends, setAllFriends] = useState()
     
     const navigate = useNavigate();
     
@@ -137,7 +138,7 @@ function Testpage(){
             <h1>Friends list</h1>
             <ul>
                 <li>friends here</li>
-                {allGroups}
+                {allFriends}
             </ul>
 
             <h1>Create Move</h1>
