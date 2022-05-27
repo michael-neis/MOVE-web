@@ -59,6 +59,7 @@ function Testpage(){
     const fetchAllFriends = async () => {
         console.log('fetching friends')
         console.log('still fetching...')
+        console.log('still... still fetching...')
     }
 
     useEffect(() => {
