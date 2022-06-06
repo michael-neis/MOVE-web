@@ -60,6 +60,7 @@ function Testpage(){
         console.log('fetching friends')
         console.log('still fetching...')
         console.log('still.... still fetching...')
+        console.log('still here')
     }
 
     useEffect(() => {
