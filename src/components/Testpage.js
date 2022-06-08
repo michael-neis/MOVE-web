@@ -61,6 +61,7 @@ function Testpage(){
         console.log('still fetching...')
         console.log('still.... still fetching...')
         console.log('still here')
+        console.log('still selling fake doors')
     }
 
     useEffect(() => {
