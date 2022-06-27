@@ -43,6 +43,40 @@ function Homepage () {
                 <div>{user?.email}</div>
                 </div>
                 <button onClick={() => navigate('/test')}>test page</button>
+                <ul>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                  <li>hi</li>
+                </ul>
             </div>
        </>
     );

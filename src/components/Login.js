@@ -11,10 +11,13 @@ function Login(){
 
 
     const handleLogin = async () => {
+        console.log(user)
         await logInWithEmailAndPassword(email, password)
         if(user){
+          console.log('general kenobi')
           navigate('/')
         }else{
+          console.log('wrong answer')
           setEmail('')
           setPassword('')
         }

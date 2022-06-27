@@ -17,11 +17,11 @@ function Header({user, name}){
 
     return(
         <div>
-        <Link to="/" style={{ textDecoration: 'none', marginLeft: "2%" }}>
+        {/* <Link to="/" style={{ textDecoration: 'none', marginLeft: "2%" }}>
             <button className="nes-btn is-warning" style={{textAlign: 'center'}}>
                 <img className="nes-avatar" alt="Home Button" src="https://cdn-icons-png.flaticon.com/512/25/25694.png" style={{imageRendering: "pixelated"}}/>
             </button>
-        </Link>
+        </Link> */}
         <button className="nes-btn is-primary" onClick={handleShow} style={{ float: 'right'}}>{name}</button>
         <MoveHeader>MOVE</MoveHeader>
         <UserModal handleClose={handleClose} showUserModal={showUserModal} name={name}/>
