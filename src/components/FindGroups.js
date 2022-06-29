@@ -3,44 +3,44 @@ import { auth, db } from "../firebase";
 import { query, collection, getDocs, where, addDoc, doc } from "firebase/firestore";
 import { async } from "@firebase/util";
 
-function FindUsers(){
+function FindGroups(){
 
-    const [userText, setUserText] = useState('')
+    const [groupText, setGroupText] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
-    const fetchUsers = async () => {
+    const fetchGroups = async () => {
         try {
-            const q = query(collection(db, "users"), where("name", "==", userText));
+            const q = query(collection(db, "groups"), where("title", "==", groupText));
             const snap = await getDocs(q);
             const list = snap.docs.map(doc => doc.data());
             if(list.length > 0){
-                const elements = list.map((user) => <li key={user.email}>{user.name}</li>)
+                const elements = list.map((group) => <li key={group.title}>{group.title}</li>)
                 setSearchResults(elements);
             }else{
-                setSearchResults(<li>No Users Found</li>)
+                setSearchResults(<li>No Groups Found</li>)
             }
         } catch (err) {
           console.error(err);
-          alert("An error occured while fetching user data");
+          alert("An error occured while fetching group data");
         }
       };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault()
-        fetchUsers()
-        setUserText('')
+        fetchGroups()
+        setGroupText('')
     }
 
     return(
         <>
         <form onSubmit={(e) => {handleSearchSubmit(e)}}>
-            <h2>Find Users:</h2>
-            <input type="text" id="user_search" value={userText} onChange={(e) => setUserText(e.target.value)}/>
-            <button type="submit" id="user_search_submit_btn">Go</button>
+            <h2>Find Groups:</h2>
+            <input type="text" id="group_search" value={groupText} onChange={(e) => setGroupText(e.target.value)}/>
+            <button type="submit" id="group_search_submit_btn">Go</button>
         </form>
         {searchResults}
         </>
     )
 }
 
-export default FindUsers
+export default FindGroups
