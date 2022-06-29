@@ -5,6 +5,7 @@ import GroupList from './GroupList';
 import Testpage from "./Testpage";
 import MissingRoute from './MissingRoute';
 import Sidebar from "./SideBar";
+import FindUsers from "./FindUsers";
 
 
 function LoggedIn(){
@@ -18,6 +19,7 @@ function LoggedIn(){
             <Route exact path="/" element={<Homepage />} />
             <Route exact path="/test" element={<Testpage />} />
             <Route exact path="/friends" element={<FriendList />} />
+            <Route exact path="/find_users" element={<FindUsers />} />
             <Route exact path="/groups" element={<GroupList />} />
             <Route path="*" element={<MissingRoute />} />
         </Routes>
