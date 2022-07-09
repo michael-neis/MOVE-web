@@ -90,9 +90,62 @@
 }
 
 
-
-
-
+.user_li{
+  color: rgb(255, 153, 0);
+  list-style: none;
+  width: 200px;
+  margin-left: 20px;
+  margin-right: 20px;
+  position: relative;
+  display: block;
+  text-transform: uppercase;
+  margin: 20px 0;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  transition: 0.5s;
+  z-index: 1;
+}
+.user_li:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  transform: scaleY(2);
+  opacity: 0;
+  transition: 0.3s;
+}
+.user_li:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: hsla(210, 51%, 20%, 0.23);
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.3s;
+  z-index: -1;
+}
+.user_li:hover {
+  color: rgb(195, 114, 0);
+  cursor: pointer;
+}
+.user_li:hover:before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+.user_li:hover:after {
+  transform: scaleY(1);
+  opacity: 1;
+}
 
 
 

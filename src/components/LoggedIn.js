@@ -7,6 +7,7 @@ import MissingRoute from './MissingRoute';
 import Sidebar from "./SideBar";
 import FindUsers from "./FindUsers";
 import FindGroups from './FindGroups';
+import OtherUser from './OtherUser';
 
 
 function LoggedIn(){
@@ -23,6 +24,7 @@ function LoggedIn(){
             <Route exact path="/find_users" element={<FindUsers />} />
             <Route exact path="/groups" element={<GroupList />} />
             <Route exact path="/find_groups" element={<FindGroups />} />
+            <Route exact path="/user" element={<OtherUser />} />
             <Route path="*" element={<MissingRoute />} />
         </Routes>
         </div>
