@@ -5,14 +5,25 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Header from "./Header";
+import NewMoveModal from "./NewMoveModal";
 
 function Homepage () {
-    const [user, loading, error] = useAuthState(auth);
-    const [name, setName] = useState("");
+    const [user, loading, error] = useAuthState(auth)
+    const [name, setName] = useState("")
+    const [showNewMoveModal, setShowNewMoveModal] = useState(false)
+    const [userDocId, setUserDocId] = useState("")
 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    const fetchUserName = async () => {
+    // open and close create move modal
+    const handleShowNewMove = () => {
+        setShowNewMoveModal(true)
+    }
+    const handleCloseNewMove = () => {
+        setShowNewMoveModal(false)
+    }
+
+    const fetchUserInfo = async () => {
       try {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
@@ -22,12 +33,18 @@ function Homepage () {
         console.error(err);
         alert("An error occured while fetching user data");
       }
+
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        setUserDocId(doc.id);
+      });
     };
     
     useEffect(() => {
       if (loading) return;
       if (!user) return navigate("/");
-      fetchUserName();
+      fetchUserInfo();
     }, [user, loading]);
 
     return (
@@ -43,6 +60,8 @@ function Homepage () {
                 <div>{user?.email}</div>
                 </div>
                 <button onClick={() => navigate('/test')}>test page</button>
+                <button onClick={() => handleShowNewMove()}>new move</button>
+                <NewMoveModal showNewMoveModal={showNewMoveModal} handleCloseNewMove={handleCloseNewMove} user={user} name={name} userDocId={userDocId}/>
                 <ul>
                   <li>hi</li>
                   <li>hi</li>
