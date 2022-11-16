@@ -149,6 +149,14 @@
 
 
 
+/* my move list items */
+.myMove-li {
+  cursor: pointer;
+}
+.myMove-li:hover{
+  color: rgb(255, 72, 0)
+}
+
 
 
 

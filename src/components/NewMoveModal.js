@@ -1,8 +1,7 @@
 import { Modal } from 'react-bootstrap'
 import { useState } from 'react'
-import { async } from "@firebase/util";
 import { db } from "../firebase";
-import { query, collection, getDocs, where, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 function NewMoveModal({showNewMoveModal, handleCloseNewMove, user, name, userDocId}){
 

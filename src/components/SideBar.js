@@ -10,6 +10,9 @@ function Sidebar(){
                     <a href="/">Home</a>
                 </li>
                 <li>
+                    <a href="/myMoves">My Moves</a>
+                </li>
+                <li>
                     <a href="/friends">Friends</a>
                 </li>
                 <li>
