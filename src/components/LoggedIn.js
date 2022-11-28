@@ -14,6 +14,7 @@ import FindUsers from "./FindUsers";
 import FindGroups from './FindGroups';
 import OtherUser from './OtherUser';
 import MyMoves from './MyMoves';
+import Move from './Move';
 
 
 function LoggedIn(){
@@ -60,6 +61,7 @@ function LoggedIn(){
             <Route exact path="/find_groups" element={<FindGroups />} />
             <Route exact path="/user" element={<OtherUser />} />
             <Route exact path="/myMoves" element={<MyMoves userDocId={userDocId}/>} />
+            <Route exact path="/Move/*" element={<Move userDocId={userDocId}/>} />
             <Route path="*" element={<MissingRoute />} />
         </Routes>
         </div>

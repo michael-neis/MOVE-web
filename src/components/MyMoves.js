@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { query, collection, getDocs } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 function MyMoves({userDocId}){
 
-    const [moves, setMoves] = useState([])
+    const [moves, setMoves] = useState(null)
+
+    const navigate = useNavigate()
 
     const fetchMoves = async () => {
         try{
@@ -12,7 +15,6 @@ function MyMoves({userDocId}){
             const snap = await getDocs(q);
             const list = snap.docs.map(doc => doc.data());
             setMoves(list)
-            console.log(list)
         }catch (err) {
             console.error(err);
             alert("An error occured while fetching user data");
@@ -22,20 +24,19 @@ function MyMoves({userDocId}){
 
     useEffect(() => {
         if(userDocId){
-            console.log(userDocId)
             fetchMoves();
         }
     }, [userDocId]);
 
 
     const handleMoveClick = (move) => {
-        console.log(move.moveTitle)
+        navigate(`/Move/?m=${move.moveDocId}`)
     }
 
 
     let displayMoves
 
-    if(!userDocId){
+    if(!moves){
         displayMoves = null
     }else if(moves.length === 0){
         displayMoves = <h1>No Moves Yet</h1>
