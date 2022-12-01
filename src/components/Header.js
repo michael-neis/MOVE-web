@@ -3,7 +3,7 @@ import UserModal from './UserModal'
 import { useState } from 'react'
 import styled from 'styled-components'
 
-function Header({user, name}){
+function Header({name}){
 
     const [showUserModal, setShowUserModal] = useState(false)
 

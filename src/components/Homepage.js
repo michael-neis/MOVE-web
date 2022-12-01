@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import NewMoveModal from "./NewMoveModal";
 
-function Homepage ({user, name, userDocId}) {
+function Homepage ({userObj, user, userDocId}) {
    
     const [showNewMoveModal, setShowNewMoveModal] = useState(false)
 
@@ -19,19 +19,16 @@ function Homepage ({user, name, userDocId}) {
 
     return (
         <>
-            {/* <Header>
-                <h1>MOVE</h1>
-            </Header> */}
-            <Header user={user} name={name}/>
+            <Header name={userObj.name}/>
             <div className="dashboard">
                 <div className="dashboard__container">
                 Logged in as
-                <div>{name}</div>
-                <div>{user?.email}</div>
+                <div>{userObj.name}</div>
+                <div>{userObj.email}</div>
                 </div>
                 <button onClick={() => navigate('/test')}>test page</button>
                 <button onClick={() => handleShowNewMove()}>new move</button>
-                <NewMoveModal showNewMoveModal={showNewMoveModal} handleCloseNewMove={handleCloseNewMove} user={user} name={name} userDocId={userDocId}/>
+                <NewMoveModal showNewMoveModal={showNewMoveModal} handleCloseNewMove={handleCloseNewMove} user={user} name={userObj.name} userDocId={userDocId}/>
             </div>
        </>
     );

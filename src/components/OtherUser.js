@@ -1,46 +1,65 @@
 import { useState, useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { query, collection, getDocs, where, addDoc, doc, getDoc } from "firebase/firestore";
-import { async } from "@firebase/util";
 
-function OtherUser(){
+function OtherUser({user, userDocId, userObj}){
 
-    const [user, loading, error] = useAuthState(auth);
     const [friendRequestButton, setFriendRequestButton] = useState()
-    const [otherUser, setOtherUser] = useState()
-
-    const handleAddFriend = () => {
-        console.log("Add friend")
-    }
+    const [otherUser, setOtherUser] = useState(null)
 
     const otherUserUid = localStorage.getItem('otherUser')
 
     const fetchUser = async () => {
-        const q = query(collection(db, "users"), where("uid", "==", otherUserUid))
-        const querySnapshot = await getDocs(q);
+        try{
+            const q = query(collection(db, "users"), where("uid", "==", otherUserUid))
+            const querySnapshot = await getDocs(q);
 
-        const userInfo = querySnapshot.docs[0].data()
+            const userInfo = querySnapshot.docs[0].data()
+            const otherUserDocId = querySnapshot.docs[0].id
 
-        setOtherUser(userInfo)
+            setOtherUser(userInfo)
 
-        const q2 = query(collection(db, "users"), where("uid", "==", user.uid))
-        const querySnapshot2 = await getDocs(q2);
+            const userRef = collection(db, "users", userDocId, "friends")
+            const docSnap = await getDocs(userRef);
 
-        const docId = querySnapshot2.docs[0].id
+            const uidList = docSnap.docs.map(doc => doc.data().friend_uid)
+            
+            if(uidList.includes(otherUserUid)){
+                console.log('this is a friend')
+                setFriendRequestButton(<h1>You and {userInfo.name} are friends</h1>)
+            }else{
+                console.log('this is not a friend')
+                setFriendRequestButton(<button onClick={() => handleAddFriend(otherUserDocId)}>Add Friend</button>)
+            }
+        } catch (err) {
+            console.error(err);
+            alert("An error occured while fetching user data");
+        }
+    }
 
-        const userRef = collection(db, "users", docId, "friends")
-        const docSnap = await getDocs(userRef);
-
-        const uidList = docSnap.docs.map(doc => doc.data().friend_uid)
+    const handleAddFriend = async (otherUserDocId) => {
         
-        if(uidList.includes(otherUserUid)){
-            console.log('this is a friend')
-            setFriendRequestButton(<h1>You and {userInfo.name} are friends</h1>)
-        }else{
-            console.log('this is not a friend')
-            setFriendRequestButton(<button onClick={() => handleAddFriend()}>Add Friend</button>)
+        try {
+            const q = query(collection(db, "users", otherUserDocId, "friendRequests"))
+            const snap = await getDocs(q);
+            const list = snap.docs.map(doc => doc.data().senderDocId);
+
+            if(list.includes(userDocId)){
+                alert(`You have already sent this user a friend request`)
+            }else{
+                const reqData = {
+                    senderId: user.uid,
+                    senderDocId: userDocId,
+                    senderName: userObj.name
+                }
+                await addDoc(collection(db, "users", otherUserDocId, "friendRequests"), reqData)
+                alert(`Request sent`)
+            }
+
+            
+        } catch (err) {
+          console.error(err);
+          alert(err.message);
         }
     }
 
@@ -53,11 +72,17 @@ function OtherUser(){
         console.log('test')
         console.log(otherUser)
         console.log(otherUserUid)
+        console.log(user)
+        console.log(userObj)
     }
 
     return(
         <div>
-            hi
+            {otherUser ?
+            <h1>{otherUser.name}</h1>
+            :
+            null
+            } 
             <button onClick={test}>test</button>
             {friendRequestButton}
         </div>

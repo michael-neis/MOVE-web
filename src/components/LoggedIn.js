@@ -22,6 +22,7 @@ function LoggedIn(){
     const [user, loading, error] = useAuthState(auth)
     const [name, setName] = useState("")
     const [userDocId, setUserDocId] = useState("")
+    const [userObj, setUserObj] = useState("")
 
     const navigate = useNavigate()
 
@@ -30,6 +31,7 @@ function LoggedIn(){
           const q = query(collection(db, "users"), where("uid", "==", user?.uid));
           const doc = await getDocs(q);
           const data = doc.docs[0].data();
+          setUserObj(data)
           setName(data.name);
         } catch (err) {
           console.error(err);
@@ -53,13 +55,13 @@ function LoggedIn(){
         <div className="logged-in">
         <Sidebar />
         <Routes>
-            <Route exact path="/" element={<Homepage user={user} name={name} userDocId={userDocId}/>} />
+            <Route exact path="/" element={<Homepage user={user} userObj={userObj} userDocId={userDocId}/>} />
             <Route exact path="/test" element={<Testpage />} />
             <Route exact path="/friends" element={<FriendList />} />
             <Route exact path="/find_users" element={<FindUsers />} />
             <Route exact path="/groups" element={<GroupList />} />
             <Route exact path="/find_groups" element={<FindGroups />} />
-            <Route exact path="/user" element={<OtherUser />} />
+            <Route exact path="/user" element={<OtherUser user={user} userDocId={userDocId} userObj={userObj} />} />
             <Route exact path="/myMoves" element={<MyMoves userDocId={userDocId}/>} />
             <Route exact path="/Move/*" element={<Move userDocId={userDocId}/>} />
             <Route path="*" element={<MissingRoute />} />
