@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "../firebase";
-import { query, collection, getDocs, where, addDoc, doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
+import { query, collection, getDocs, where, addDoc } from "firebase/firestore";
 
 function OtherUser({user, userDocId, userObj}){
 

@@ -27,7 +27,6 @@ function NewMoveModal({showNewMoveModal, handleCloseNewMove, user, name, userDoc
                 }
 
             await addDoc(collection(db, "moves"), moveData).then(function(docRef) {
-                console.log("Document written with ID: ", docRef.id)
                 const userData = {
                     moveDocId: docRef.id,
                     moveTitle: moveTitle

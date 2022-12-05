@@ -57,7 +57,7 @@ function LoggedIn(){
         <Routes>
             <Route exact path="/" element={<Homepage user={user} userObj={userObj} userDocId={userDocId}/>} />
             <Route exact path="/test" element={<Testpage />} />
-            <Route exact path="/friends" element={<FriendList />} />
+            <Route exact path="/friends" element={<FriendList userDocId={userDocId} userObj={userObj}/>} />
             <Route exact path="/find_users" element={<FindUsers />} />
             <Route exact path="/groups" element={<GroupList />} />
             <Route exact path="/find_groups" element={<FindGroups />} />

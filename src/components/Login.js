@@ -10,14 +10,12 @@ function Login(){
     const navigate = useNavigate();
 
 
-    const handleLogin = async () => {
-        console.log(user)
+    const handleLogin = async (e) => {
+        e.preventDefault();
         await logInWithEmailAndPassword(email, password)
         if(user){
-          console.log('general kenobi')
           navigate('/')
         }else{
-          console.log('wrong answer')
           setEmail('')
           setPassword('')
         }
@@ -39,6 +37,7 @@ function Login(){
     return (
       <div className="login">
         <div className="login__container">
+          <form onSubmit={(e) => handleLogin(e)}>
           <input
             type="text"
             className="login__textBox"
@@ -55,10 +54,11 @@ function Login(){
           />
           <button
             className="login__btn"
-            onClick={() => handleLogin()}
+            type="submit"
           >
             Login
           </button>
+          </form>
           <button className="login__btn login__google" onClick={signInWithGoogle}>
             Login with Google
           </button>
