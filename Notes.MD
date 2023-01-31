@@ -1,6 +1,6 @@
 To do:
  [✔] click on move in moves list opens move with info
- [] move requires title and creator name
+ [] move requires title and creator name (plus creator id and creator doc id)
  [] tab for joined moves
  [] edit/delete moves
  [] add/remove friends
