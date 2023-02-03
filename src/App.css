@@ -1,11 +1,35 @@
+@import url('https://css.gg/profile.css');
+
+
 .home-container {
   text-align: center;
   margin: auto
 }
 
-.title {
-  color: rgb(255, 72, 0)
+.header {
+  color: rgb(255, 72, 0);
+  font-weight: bold;
+  text-align: center;
+  font-size: 650%
 }
+
+.profile-icon{
+  position: fixed;
+  right: 6%;
+  top: 4.5%;
+  font-size: 65px; 
+  color: rgb(255, 72, 0);
+}
+
+.profile-icon :hover{
+  color:rgba(254, 97, 0, 0.693);
+  cursor: pointer;
+}
+
+
+
+
+
 
 .logged-in {
   margin-left: 160px; /* Same as the width of the sidebar */
@@ -19,7 +43,7 @@
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color:hsla(210, 51%, 20%, 0.23);
+  background-color:rgba(0, 0, 0, 0.567);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
 }
@@ -71,7 +95,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
+  background-color: rgb(255, 72, 0);
   transform: scale(0);
   opacity: 0;
   transition: 0.3s;
@@ -159,7 +183,32 @@
 
 
 
+/* Homepage stuff */
+.homepage-headers{
+  color: rgb(255, 72, 0);
+}
 
+.homepage-container{
+  background-color: #000;
+}
+
+.past-moves-container {
+  width: 50%;
+  float: left;
+  background-color: rgb(163, 19, 19);
+  text-align: center;
+}
+.upcoming-moves-container {
+  width: 50%;
+  float: right;
+  background-color: rgb(114, 19, 231);
+  text-align: center;
+}
+.friends-looking-container {
+  background-color: rgb(0, 196, 23);
+  text-align: center;
+  margin-top: 100px;
+}
 
 
 

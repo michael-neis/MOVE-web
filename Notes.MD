@@ -14,3 +14,8 @@ To do:
  [] where to host site
  [] firebase rules
  [] iOS version
+
+
+
+ Color palette:
+  - orange: rgb(255, 72, 0)

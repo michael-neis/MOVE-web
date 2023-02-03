@@ -28,6 +28,22 @@ function Homepage ({userObj, user, userDocId}) {
                 </div>
                 <button onClick={() => navigate('/test')}>test page</button>
                 <button onClick={() => handleShowNewMove()}>new move</button>
+
+                <div className="homepage-container">
+                    <div className="past-moves-container">
+                        <h1 className="homepage-headers">Past Moves</h1>
+                    </div>
+
+                    <div className="upcoming-moves-container">
+                        <h1 className="homepage-headers">Upcoming Moves</h1>
+                    </div>
+                </div>
+                <br/>
+                    <div className="friends-looking-container">
+                        <h1 className="homepage-headers">Friends Looking for Moves</h1>
+                    </div>
+                
+
                 <NewMoveModal showNewMoveModal={showNewMoveModal} handleCloseNewMove={handleCloseNewMove} user={user} name={userObj.name} userDocId={userDocId}/>
             </div>
        </>
