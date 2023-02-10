@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import NewMoveModal from "./NewMoveModal";
+import MoveCard from "./MoveCard";
 
 function Homepage ({userObj, user, userDocId}) {
    
@@ -30,13 +31,50 @@ function Homepage ({userObj, user, userDocId}) {
                 <button onClick={() => handleShowNewMove()}>new move</button>
 
                 <div className="homepage-container">
-                    <div className="past-moves-container">
-                        <h1 className="homepage-headers">Past Moves</h1>
+
+                    <div className="upcoming-moves-outer">
+                        <h1 className="homepage-headers">Upcoming Moves</h1>
+                        <div className="moves-container">
+                            <div className="moves-inner">
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                            </div>
+                        </div>
                     </div>
 
-                    <div className="upcoming-moves-container">
-                        <h1 className="homepage-headers">Upcoming Moves</h1>
+                    <div className="past-moves-outer">
+                        <h1 className="homepage-headers">Past Moves</h1>
+                        <div className="moves-container">
+                            <div className="moves-inner">
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                                <MoveCard />
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <br/>
                     <div className="friends-looking-container">

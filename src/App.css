@@ -191,25 +191,75 @@
 .homepage-container{
   background-color: #000;
 }
-
-.past-moves-container {
+/* .past-moves-outer {
   width: 50%;
   float: left;
   background-color: rgb(163, 19, 19);
   text-align: center;
 }
-.upcoming-moves-container {
+.upcoming-moves-outer {
   width: 50%;
   float: right;
   background-color: rgb(114, 19, 231);
   text-align: center;
-}
+} */
 .friends-looking-container {
   background-color: rgb(0, 196, 23);
   text-align: center;
   margin-top: 100px;
 }
+.moves-container {
+  /* display: flex;
+  flex-wrap: wrap; */
+  margin-bottom: 3%;
+  /* height: 300px;
+  width:530px; */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.moves-inner {
+  display: inline-block;
+  vertical-align: middle;
+}
 
+
+
+
+
+.move-card{
+  color: white;
+  margin: 10px 2.5% 10px 2.5%;
+  padding: 15px 5px 5px 5px;
+  width: calc(20% - 10px);
+  min-height: 300px;
+  /* border-radius: 5px; */
+  border-color: black;
+  background-color: hsla(0, 1%, 63%, 0.212);
+  transition: background-color 500ms, border-color 500ms, box-shadow 500ms;
+  box-shadow: 5px 5px 4px hsla(182, 50%, 58%, 0.575);
+  position: relative;
+  cursor: pointer;
+
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.move-card p{
+  margin-top: 10px
+}
+
+.move-card img{
+  /* width: 250px; */
+  width: 90%;
+}
+
+.move-card:hover{
+  background-color: hsl(210, 6%, 93%);
+  border-color: hsl(180, 50%, 20%);
+  box-shadow: 5px 5px 4px hsla(271, 66%, 57%, 0.575);
+  color:rgb(0, 0, 0)
+}
 
 
 
